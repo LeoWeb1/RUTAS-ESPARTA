@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Sistema de Rutas</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#1d3557,#457b9d);
+color:white;
+text-align:center;
+}
+
+.container{
+
+width:900px;
+margin:auto;
+background:white;
+color:black;
+padding:30px;
+border-radius:12px;
+margin-top:40px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+}
+
+h2{
+
+color:#1d3557;
+
+}
+
+input,select{
+
+padding:10px;
+margin:10px;
+font-size:16px;
+border-radius:6px;
+border:1px solid #ccc;
+
+}
+
+button{
+
+padding:10px 20px;
+font-size:16px;
+background:#1d3557;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#457b9d;
+
+}
+
+table{
+
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#1d3557;
+color:white;
+padding:10px;
+
+}
+
+td{
+
+padding:10px;
+border-bottom:1px solid #ddd;
+
+}
+
+tr:hover{
+
+background:#f1f1f1;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Sistema de Rutas de Vendedores</h2>
+
+<form method="POST">
+
+<input type="text" name="vendedor" placeholder="Buscar vendedor (ej: LUIS)">
+<input type="text" name="ruta" placeholder="Buscar ruta (ej: 101)">
+
+
+<select name="dia">
+
+{% for d in dias %}
+<option value="{{d}}">{{d}}</option>
+{% endfor %}
+
+</select>
+
+<button type="submit">Buscar</button>
+
+</form>
+
+{% if resultados %}
+
+<table>
+
+<tr>
+<th>DIA</th>
+<th>VENDEDOR</th>
+<th>RUTA GENERAL</th>
+<th>RUTA</th>
+<th>ESPEJO</th>
+<th>VENDEDOR ESPEJO</th>
+<th>DIA ESPEJO</th>
+
+
+</tr>
+
+{% for r in resultados %}
+
+<tr>
+
+<td>{{r.dia}}</td>
+<td>{{r.nombre}}</td>
+<td>{{r.ruta_general}}</td>
+<td>{{r.ruta}}</td>
+<td>{{r.espejo}}</td>
+<td>{{r.vendedor_espejo}}</td>
+<td>{{r.dia_espejo}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
